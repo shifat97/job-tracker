@@ -1,16 +1,64 @@
-# React + Vite
+# Job Tracker - Modern Application Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, minimalist, and highly efficient job application tracker built with React. This application helps you stay organized during your job hunt by providing a centralized dashboard to track every application with ease.
 
-Currently, two official plugins are available:
+![Dashboard Preview](https://via.placeholder.com/1200x600?text=Job+Tracker+Dashboard+Preview)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- **Unified Dashboard:** Seamless side-by-side view with the application form on the left and your job list on the right.
+- **Localized Defaults:** Pre-configured for **Bangladesh (Dhaka)** and **BDT** currency for instant entry, with local date synchronization.
+- **Smart City Search:** Searchable city input with auto-suggestions powered by a comprehensive global database.
+- **Full Application Lifecycle:** Track statuses from **Applied** and **Interviewed** to **Offered**, **Accepted**, or **Rejected** with distinctive color coding.
+- **Advanced Editing:** Easily update any existing application row with a single click.
+- **Local Persistence:** All data is saved securely in your browser's **LocalStorage**—no account needed.
+- **Modern UI:** Clean, professional dashboard aesthetic that is fully responsive across desktop, tablet, and mobile devices.
+- **Privacy First:** Use the "Clear All Data" feature to instantly reset your tracking history.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework:** [React](https://reactjs.org/) (Vite-based)
+- **State Management:** React Context API
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Data Packages:**
+  - `country-state-city` (Global location data)
+  - `currency-codes` (ISO currency standards)
+  - `uuid` (Unique entry IDs)
+- **Styling:** CSS Modules / Vanilla CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ⚙️ Setup & Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/job-tracker.git
+   cd job-tracker
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment:**
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_DB_CONNECTION_STRING=your_connection_string
+   VITE_API_KEY=your_secret_key
+   ```
+
+4. **Run Development Server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build for Production:**
+   ```bash
+   npm run build
+   ```
+
+## 📝 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+Built with ❤️ for better career tracking.
