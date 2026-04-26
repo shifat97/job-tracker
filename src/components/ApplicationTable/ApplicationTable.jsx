@@ -1,6 +1,5 @@
-import React from 'react';
 import { ExternalLink, Trash2, Edit2 } from 'lucide-react';
-import { useJobs } from '../../context/JobContext';
+import { useJobs } from '../../context/useJobs';
 import { STATUS_OPTIONS } from '../../utils/constants';
 import './ApplicationTable.css';
 
@@ -16,7 +15,17 @@ const ApplicationTable = () => {
   };
 
   const handleStatusChange = (app, newStatus) => {
-    updateApplication({ ...app, status: newStatus });
+    updateApplication({ ...app, status: newStatus }, false);
+  };
+
+  const displaySalary = (app) => {
+    if (!app.salary) return 'N/A';
+    // If it's purely a number, show currency
+    if (!isNaN(app.salary) && !isNaN(parseFloat(app.salary))) {
+      return `${app.salary} ${app.currency}`;
+    }
+    // Otherwise it's probably text like "Negotiable", so just show it as is
+    return app.salary;
   };
 
   const handleClear = () => {
@@ -57,7 +66,7 @@ const ApplicationTable = () => {
                 <td>{app.jobType}</td>
                 <td>{app.city}, {app.country}</td>
                 <td>{app.appliedDate}</td>
-                <td>{app.salary ? `${app.salary} ${app.currency}` : 'N/A'}</td>
+                <td>{displaySalary(app)}</td>
                 <td>
                   <select 
                     className="status-select" 

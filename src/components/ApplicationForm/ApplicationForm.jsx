@@ -1,65 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import { Country, City } from 'country-state-city';
+import { useState, useMemo } from 'react';
+import { City } from 'country-state-city';
 import currencyCodes from 'currency-codes';
 import { v4 as uuidv4 } from 'uuid';
-import { JOB_TYPES, STATUS_OPTIONS } from '../../utils/constants';
-import { useJobs } from '../../context/JobContext';
+import { JOB_TYPES, STATUS_OPTIONS, TECH_COUNTRIES } from '../../utils/constants';
+import { useJobs } from '../../context/useJobs';
 import './ApplicationForm.css';
+
+const getLocalDate = () => {
+  const now = new Date();
+  return now.toLocaleDateString('en-CA'); // Returns YYYY-MM-DD in local time
+};
+
+const INITIAL_FORM_STATE = {
+  jobTitle: '',
+  companyName: '',
+  applicationLink: '',
+  jobType: 'Remote',
+  country: 'BD',
+  city: 'Dhaka',
+  appliedDate: getLocalDate(),
+  salary: '',
+  currency: 'BDT',
+  status: 'Applied'
+};
 
 const ApplicationForm = ({ onComplete }) => {
   const { addApplication, updateApplication, editingApplication, setEditingApplication } = useJobs();
-  const [countries] = useState(Country.getAllCountries());
-  const [currencies] = useState(currencyCodes.data);
+  const currencies = useMemo(() => currencyCodes.data, []);
   
-  const getLocalDate = () => {
-    const now = new Date();
-    return now.toLocaleDateString('en-CA'); // Returns YYYY-MM-DD in local time
-  };
+  const [formData, setFormData] = useState(editingApplication || INITIAL_FORM_STATE);
 
-  const initialFormState = {
-    jobTitle: '',
-    companyName: '',
-    applicationLink: '',
-    jobType: 'Remote',
-    country: 'Bangladesh',
-    city: 'Dhaka',
-    appliedDate: getLocalDate(),
-    salary: '',
-    currency: 'BDT',
-    status: 'Applied'
-  };
-
-  const [formData, setFormData] = useState(initialFormState);
-  const [cities, setCities] = useState([]);
-
-  // Load editing data if available
-  useEffect(() => {
-    if (editingApplication) {
-      setFormData(editingApplication);
-    } else {
-      setFormData(initialFormState);
-    }
-  }, [editingApplication]);
-
-  useEffect(() => {
-    if (formData.country) {
-      const countryCode = countries.find(c => c.name === formData.country)?.isoCode;
-      if (countryCode) {
-        const rawCities = City.getCitiesOfCountry(countryCode);
-        const uniqueCities = Array.from(new Set(rawCities.map(c => c.name)))
-          .map(name => rawCities.find(c => c.name === name))
-          .sort((a, b) => a.name.localeCompare(b.name));
-        
-        setCities(uniqueCities);
-      }
-    } else {
-      setCities([]);
-    }
-  }, [formData.country, countries]);
+  // Derived state: cities based on current selected country
+  const cities = useMemo(() => {
+    if (!formData.country) return [];
+    const rawCities = City.getCitiesOfCountry(formData.country);
+    if (!rawCities) return [];
+    
+    return Array.from(new Set(rawCities.map(c => c.name)))
+      .map(name => rawCities.find(c => c.name === name))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [formData.country]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    if (name === 'country') {
+      setFormData(prev => ({ ...prev, [name]: value, city: '' }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
@@ -75,13 +63,14 @@ const ApplicationForm = ({ onComplete }) => {
       addApplication(newApp);
     }
     
-    // Reset transient fields if adding, or clear edit mode if updating
+    // Reset transient fields if adding
     if (!editingApplication) {
       setFormData(prev => ({
         ...prev,
         jobTitle: '',
         companyName: '',
         applicationLink: '',
+        salary: ''
       }));
     }
     onComplete();
@@ -146,7 +135,11 @@ const ApplicationForm = ({ onComplete }) => {
             <label>Country</label>
             <select name="country" value={formData.country} onChange={handleChange} required>
               <option value="">Select Country</option>
-              {countries.map(c => <option key={c.isoCode} value={c.name}>{c.name}</option>)}
+              {TECH_COUNTRIES.map(c => (
+                <option key={c.code} value={c.code}>
+                  {c.name}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -184,11 +177,11 @@ const ApplicationForm = ({ onComplete }) => {
             <label>Salary Range</label>
             <div className="salary-inputs">
               <input 
-                type="number" 
+                type="text" 
                 name="salary" 
                 value={formData.salary} 
                 onChange={handleChange} 
-                placeholder="Amount"
+                placeholder="e.g. 100k - 120k"
               />
               <select name="currency" value={formData.currency} onChange={handleChange}>
                 {currencies.map(curr => (

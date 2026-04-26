@@ -1,15 +1,10 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import { useState } from 'react';
+import { JobContext } from './JobContext';
 import { getStoredApplications, saveApplications } from '../utils/storage';
 
-const JobContext = createContext();
-
 export const JobProvider = ({ children }) => {
-  const [applications, setApplications] = useState([]);
+  const [applications, setApplications] = useState(() => getStoredApplications());
   const [editingApplication, setEditingApplication] = useState(null);
-
-  useEffect(() => {
-    setApplications(getStoredApplications());
-  }, []);
 
   const addApplication = (application) => {
     const updated = [application, ...applications];
@@ -17,11 +12,11 @@ export const JobProvider = ({ children }) => {
     saveApplications(updated);
   };
 
-  const updateApplication = (updatedApp) => {
+  const updateApplication = (updatedApp, closeForm = true) => {
     const updated = applications.map(app => app.id === updatedApp.id ? updatedApp : app);
     setApplications(updated);
     saveApplications(updated);
-    if (editingApplication?.id === updatedApp.id) {
+    if (closeForm && editingApplication?.id === updatedApp.id) {
       setEditingApplication(null);
     }
   };
@@ -44,12 +39,4 @@ export const JobProvider = ({ children }) => {
       {children}
     </JobContext.Provider>
   );
-};
-
-export const useJobs = () => {
-  const context = useContext(JobContext);
-  if (!context) {
-    throw new Error('useJobs must be used within a JobProvider');
-  }
-  return context;
 };
