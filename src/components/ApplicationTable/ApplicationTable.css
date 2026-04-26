@@ -43,11 +43,40 @@
   color: #111827;
 }
 
-.status-badge {
+.status-badge, .status-select {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  text-align: center;
+  width: 110px; /* Fixed width to prevent table jumping */
+  display: inline-block;
+}
+
+.status-select {
+  transition: all 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.status-select:hover {
+  filter: brightness(0.95);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.status-select:focus {
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.status-select option {
+  background-color: white;
+  color: #374151;
+  font-weight: normal;
 }
 
 .link-icon {

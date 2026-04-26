@@ -5,7 +5,7 @@ import { STATUS_OPTIONS } from '../../utils/constants';
 import './ApplicationTable.css';
 
 const ApplicationTable = () => {
-  const { applications, clearApplications, setEditingApplication } = useJobs();
+  const { applications, clearApplications, setEditingApplication, updateApplication } = useJobs();
 
   const getStatusStyle = (status) => {
     const option = STATUS_OPTIONS.find(opt => opt.value === status);
@@ -13,6 +13,10 @@ const ApplicationTable = () => {
       backgroundColor: option?.color || '#f3f4f6',
       color: option?.textColor || '#374151'
     };
+  };
+
+  const handleStatusChange = (app, newStatus) => {
+    updateApplication({ ...app, status: newStatus });
   };
 
   const handleClear = () => {
@@ -55,9 +59,18 @@ const ApplicationTable = () => {
                 <td>{app.appliedDate}</td>
                 <td>{app.salary ? `${app.salary} ${app.currency}` : 'N/A'}</td>
                 <td>
-                  <span className="status-badge" style={getStatusStyle(app.status)}>
-                    {app.status}
-                  </span>
+                  <select 
+                    className="status-select" 
+                    value={app.status}
+                    onChange={(e) => handleStatusChange(app, e.target.value)}
+                    style={getStatusStyle(app.status)}
+                  >
+                    {STATUS_OPTIONS.map(option => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
                 </td>
                 <td className="actions-cell">
                   <div className="action-buttons">

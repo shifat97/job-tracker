@@ -21,7 +21,9 @@ export const JobProvider = ({ children }) => {
     const updated = applications.map(app => app.id === updatedApp.id ? updatedApp : app);
     setApplications(updated);
     saveApplications(updated);
-    setEditingApplication(null);
+    if (editingApplication?.id === updatedApp.id) {
+      setEditingApplication(null);
+    }
   };
 
   const clearApplications = () => {

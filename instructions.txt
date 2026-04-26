@@ -1,27 +1,10 @@
-Plan first.
-Then write the solution.
+Understand the codebase first.
+Then think carefully.
+Then start working on the projects.
 
-While applying for jobs, it's hard to track every single one of them after the application. I want to make a system, which I can fill after completing an application. This will be basically a form with modern UI design that contains this below field:
-
-Job Title: This will be a text field.
-Company Name: This will be a text field.
-Application Link: This will be text filed, but it will save as link in the db and show in UI as link as well.
-Job Type: This will be a dropdown field with values: Onsite, Remote, Hybrid
-Location: This will also be a dropdown from where I can select city, country. Use any package to get those country wise locations if you want.
-Applied Date: This will be a date filed, with today’s date as default value.
-Salary Range: This will be a number field and right beside it there will be a dropdown field for currency selection. Use any packages to get all currencies for dropdown values.
-Status: This will be a dropdown field with values: In Progress, Accepted, Rejected
-
-Make sure to use different light colors for dropdown values so that I can identify each of them clearly. Also, for header - keep two options: Applied Jobs Page, Application Form Page. 
+Right now, to update a job status, we have to click the update icon on action column and then type on the form again. Keep this feature. But what I want, to update the status field only, I can do it directly from the table from a dropdown, so that I can update it fast. 
 
 
-The applied jobs page will be a modern UI table which values will come from our database. The application form page will be the page where our form will be visible. 
+Review for your solution.
+Finally fix it, if any issue remains.
 
-For tech stack use: React and JavaScript, Local Storage for database
-
-Make sure to use .env to keep secrets and the UI for both of the pages must look modern.
-
-Lastly, let me know which values to be updated for secret keys like DB connection and other stuff.
-
-
-Now, review for bugs and edge cases or any modifications.
