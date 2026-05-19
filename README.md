@@ -1,17 +1,18 @@
 # Job Tracker - Modern Application Manager
 
-A sleek, minimalist, and highly efficient job application tracker built with React. This application helps you stay organized during your job hunt by providing a centralized dashboard to track every application with ease.
+A sleek, professional, and high-performance job application tracker built with React. Featuring a **modern dark aesthetic** (Slate palette) and satisfying interactive elements, this application helps you stay organized during your job hunt with a centralized, data-driven dashboard.
 
 ## 🚀 Features
 
-- **Unified Dashboard:** Seamless side-by-side view with the application form on the left and your job list on the right.
-- **Localized Defaults:** Pre-configured for **Bangladesh (Dhaka)** and **BDT** currency for instant entry, with local date synchronization.
-- **Smart City Search:** Searchable city input with auto-suggestions powered by a comprehensive global database.
-- **Full Application Lifecycle:** Track statuses from **Applied** and **Interviewed** to **Offered**, **Accepted**, or **Rejected** with distinctive color coding.
-- **Advanced Editing:** Easily update any existing application row with a single click.
-- **Local Persistence:** All data is saved securely in your browser's **LocalStorage**—no account needed.
-- **Modern UI:** Clean, professional dashboard aesthetic that is fully responsive across desktop, tablet, and mobile devices.
-- **Privacy First:** Use the "Clear All Data" feature to instantly reset your tracking history.
+- **Modern Dark Theme:** A premium Slate-950 UI with Indigo and Sky accents, optimized for long sessions and high readability.
+- **Unified Dashboard:** Seamless side-by-side layout featuring a sticky application form and a data-rich tracking table.
+- **Dynamic Feedback:** Satisfying hover states, smooth transitions, and a glassmorphism-inspired header.
+- **Smart Data Entry:** 
+    - **Localized Defaults:** Pre-configured for Bangladesh (Dhaka) and BDT currency.
+    - **Global Coverage:** Searchable city input with auto-suggestions for 20+ tech-focused countries.
+- **Full Lifecycle Tracking:** Distinct, high-contrast badges for tracking status from **Applied** to **Offered** and **Accepted**.
+- **Local Persistence:** Securely stores your data in the browser's **LocalStorage**—zero backend required, maximum privacy.
+- **Responsive & Satisfying:** Fully responsive design that maintains its premium feel across all devices.
 
 ## 🛠️ Tech Stack
 

@@ -2,6 +2,10 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #020617; /* Slate 950 */
+  color: #e2e8f0; /* Slate 200 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {

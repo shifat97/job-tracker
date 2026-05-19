@@ -1,11 +1,11 @@
 export const JOB_TYPES = ['Onsite', 'Remote', 'Hybrid'];
 
 export const STATUS_OPTIONS = [
-  { label: 'Applied', value: 'Applied', color: '#e0f2fe', textColor: '#0369a1' },     // light blue
-  { label: 'Interviewed', value: 'Interviewed', color: '#fef9c3', textColor: '#854d0e' }, // light yellow
-  { label: 'Offered', value: 'Offered', color: '#f0fdf4', textColor: '#166534' },     // light emerald
-  { label: 'Accepted', value: 'Accepted', color: '#dcfce7', textColor: '#15803d' },    // light green
-  { label: 'Rejected', value: 'Rejected', color: '#fee2e2', textColor: '#b91c1c' },    // light red
+  { label: 'Applied', value: 'Applied', color: '#1e293b', textColor: '#38bdf8' },     // Slate 800, Sky 400
+  { label: 'Interviewed', value: 'Interviewed', color: '#334155', textColor: '#fbbf24' }, // Slate 700, Amber 400
+  { label: 'Offered', value: 'Offered', color: '#064e3b', textColor: '#34d399' },     // Emerald 900, Emerald 400
+  { label: 'Accepted', value: 'Accepted', color: '#14532d', textColor: '#4ade80' },    // Green 900, Green 400
+  { label: 'Rejected', value: 'Rejected', color: '#450a0a', textColor: '#f87171' },    // Red 950, Red 400
 ];
 
 export const TECH_COUNTRIES = [
