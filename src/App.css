@@ -7,8 +7,8 @@
 
 .content {
   padding: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
 }
 
 .dashboard-grid {
